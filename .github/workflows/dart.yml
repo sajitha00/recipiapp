@@ -1,0 +1,33 @@
+name: dart
+
+on:
+ push:
+    branches: [ "main" ] # Updated to "main" as it's the new default branch name
+ pull_request:
+    branches: [ "main" ] # Updated to "main" for consistency
+
+jobs:
+ build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3 # Ensure you're using the latest version of the checkout action
+
+      # Use the latest stable version of the Dart SDK.
+      # You can specify other versions if desired.
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get
+
+      # Optionally, verify the use of 'dart format' on each commit.
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # Analyze project source. Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze project source
+        run: dart analyze
+
+      # Run tests. Note that Flutter projects will want to change this to 'flutter test'.
+      - name: Run tests
+        run: dart test
