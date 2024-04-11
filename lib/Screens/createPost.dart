@@ -116,7 +116,11 @@ class _CreatePostState extends State<CreatePost> {
                   labelText: 'Enter Caption',
                   labelStyle: TextStyle(
                     color: Colors.white38,
-                  )
+                  ),
+                ),
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontFamily: "Poppins"
                 ),
               ),
               SizedBox(height: 15,),
