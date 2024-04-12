@@ -3,10 +3,11 @@ import 'package:recipiapp/components/textcomp.dart';
 import 'package:recipiapp/backend/auth_service.dart';
 import 'package:recipiapp/Screens/home.dart';
 
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
+
 class Welcome extends StatefulWidget {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  Welcome({super.key});
+  const Welcome({super.key});
 
   State<Welcome> createState() => _WelcomeScreenState();
 }
@@ -67,7 +68,7 @@ class _WelcomeScreenState extends State<Welcome> {
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 40,
-                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                      color: Color(0xFFFFFFFF),
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -133,8 +134,8 @@ class _WelcomeScreenState extends State<Welcome> {
                                         onPressed: () async {
                                           String result =
                                               await AuthService().loginUser(
-                                            widget._emailController.text,
-                                            widget._passwordController.text,
+                                            _emailController.text,
+                                            _passwordController.text,
                                           );
                                           if (result == "Login Successful") {
                                             // Navigate to the Home screen
